@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Word } from './types';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-list-word',
@@ -17,10 +18,8 @@ import { Word } from './types';
 })
 
 export class ListWordComponent {
-  words: Word[] = [
-    { _id: 'a', en: 'One', vn: 'Mot', isMemorized: true },
-    { _id: 'b', en: 'Two', vn: 'Hai', isMemorized: false },
-    { _id: 'c', en: 'Three', vn: 'Ba', isMemorized: true },
-    { _id: 'd', en: 'Four', vn: 'Bon', isMemorized: false },
-  ];
+  words: Word[] = [];
+  constructor(private store: Store<any>) {
+    this.store.select('words').subscribe(words => this.words = words);
+  }
 }
