@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'app-parent',
@@ -13,5 +14,8 @@ import { Component } from '@angular/core';
 })
 
 export class ParentComponent {
-    count = 1;
+    count;
+    constructor(private store: Store<any>) {
+        this.store.select('count').subscribe(x => this.count = x);
+    }
 }

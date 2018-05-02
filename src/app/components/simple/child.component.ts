@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'app-child',
@@ -18,9 +19,19 @@ import { Component } from '@angular/core';
 })
 
 export class ChildComponent {
-    increase() {}
+    constructor(private store: Store<any>) {}
 
-    descrease() {}
+    increase() {
+        // this.store.dispatch({ type: 'INCREASE' });
+        this.store.dispatch({ type: 'CHANGE', isIncrease: true });
+    }
 
-    reset() {}
+    descrease() {
+        // this.store.dispatch({ type: 'DESCREASE' });
+        this.store.dispatch({ type: 'CHANGE', isIncrease: false });
+    }
+
+    reset() {
+        this.store.dispatch({ type: 'RESET' });
+    }
 }
