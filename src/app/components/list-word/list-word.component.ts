@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
     <app-word-filter></app-word-filter>
     <br>
     <app-word-form></app-word-form>
-    <div *ngFor="let word of words">
+    <div *ngFor="let word of filteredWords">
         <app-word-item [wordInfo]="word">
         </app-word-item>
     </div>
@@ -19,7 +19,17 @@ import { Store } from '@ngrx/store';
 
 export class ListWordComponent {
   words: Word[] = [];
+  filterMode: string;
   constructor(private store: Store<any>) {
     this.store.select('words').subscribe(words => this.words = words);
+    this.store.select('filterMode').subscribe(f => this.filterMode = f);
+  }
+
+  get filteredWords(): Word[] {
+    return this.words.filter(word => {
+      if (this.filterMode === 'SHOW_ALL') return true;
+      if (this.filterMode === 'SHOW_FORGOT') return !word.isMemorized;
+      return word.isMemorized;
+    });
   }
 }

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Word } from './types';
+import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'app-word-form',
@@ -28,9 +29,12 @@ export class WordFormComponent {
     shouldShowForm = false;
     txtEn = '';
     txtVn = '';
+    constructor(private store: Store<any>) {
+        this.store.select('shouldShowForm').subscribe(s => this.shouldShowForm = s);
+    }
 
     toggleForm() {
-        this.shouldShowForm = !this.shouldShowForm;
+        this.store.dispatch({ type: 'TOGGLE_FORM' });
     }
 
     addWord() {
@@ -40,7 +44,7 @@ export class WordFormComponent {
             vn: this.txtVn,
             isMemorized: false
         };
-        this.toggleForm();
+        this.store.dispatch({ type: 'ADD_WORD', word });
         this.txtEn = '';
         this.txtVn = '';
     }

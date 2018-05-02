@@ -10,7 +10,7 @@ import { ListWordComponent } from './components/list-word/list-word.component';
 import { WordFilterComponent } from './components/list-word/word-filter.component';
 import { WordFormComponent } from './components/list-word/word-form.component';
 import { WordItemComponent } from './components/list-word/word-item.component';
-import { wordsReducer, filterStatusReducer, shouldShowFormReducer } from './components/list-word/reducers';
+import { wordsReducer, filterModeReducer, shouldShowFormReducer } from './components/list-word/reducers';
 
 import { ChildComponent } from './components/simple/child.component';
 import { ParentComponent } from './components/simple/parent.component';
@@ -32,7 +32,7 @@ import { counterReducer } from './components/simple/counter';
     HttpModule,
     StoreModule.forRoot({
       words: wordsReducer,
-      filterStatus: filterStatusReducer,
+      filterMode: filterModeReducer,
       shouldShowForm: shouldShowFormReducer
     })
   ],
