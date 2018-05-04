@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Word } from './types';
 import { Store } from '@ngrx/store';
+import { WordService } from './word.service';
 
 @Component({
   selector: 'app-list-word',
@@ -15,14 +16,16 @@ import { Store } from '@ngrx/store';
     </div>
   </div>
   `,
+  providers: [WordService]
 })
 
 export class ListWordComponent {
   words: Word[] = [];
   filterMode: string;
-  constructor(private store: Store<any>) {
+  constructor(private store: Store<any>, private wordService: WordService) {
     this.store.select('words').subscribe(words => this.words = words);
     this.store.select('filterMode').subscribe(f => this.filterMode = f);
+    this.wordService.getAllWords();
   }
 
   get filteredWords(): Word[] {
