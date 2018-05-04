@@ -18,6 +18,17 @@ export class WordService {
             this.store.dispatch({ type: 'SET_WORDS', words: resJson.words });
         });
     }
+
+    addWord(en: string, vn: string) {
+        const body = { en, vn, isMemorized: false };
+        this.http.post(URL, body)
+        .toPromise()
+        .then(response => response.json())
+        .then(resJson => {
+            if (!resJson.success) return alert(resJson.message);
+            this.store.dispatch({ type: 'ADD_WORD', word: resJson.word });
+        });
+    }
 }
 
 // https://github.com/vanpho93/ngrx1812/tree/master/_server
