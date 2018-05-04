@@ -11,6 +11,7 @@ import { WordFilterComponent } from './components/list-word/word-filter.componen
 import { WordFormComponent } from './components/list-word/word-form.component';
 import { WordItemComponent } from './components/list-word/word-item.component';
 import { wordsReducer, filterModeReducer, shouldShowFormReducer } from './components/list-word/reducers';
+import { WordService } from './components/list-word/word.service';
 
 import { ChildComponent } from './components/simple/child.component';
 import { ParentComponent } from './components/simple/parent.component';
@@ -36,7 +37,7 @@ import { counterReducer } from './components/simple/counter';
       shouldShowForm: shouldShowFormReducer
     })
   ],
-  providers: [],
+  providers: [WordService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

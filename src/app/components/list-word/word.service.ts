@@ -7,7 +7,9 @@ const URL = 'https://word1203.herokuapp.com/word';
 @Injectable()
 
 export class WordService {
-    constructor(private http: Http, private store: Store<any>) {}
+    constructor(private http: Http, private store: Store<any>) {
+        console.log('create service');
+    }
 
     getAllWords() {
         this.http.get(URL)

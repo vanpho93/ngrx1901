@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Word } from './types';
-import { Store } from '@ngrx/store';
 import { WordService } from './word.service';
 
 @Component({
@@ -17,12 +16,12 @@ import { WordService } from './word.service';
         <button class="btn btn-success" *ngIf="!wordInfo.isMemorized" (click)="toggle();">
             Memorized
         </button>
-    `
+    `,
 })
 
 export class WordItemComponent {
     @Input() wordInfo: Word;
-    constructor(private store: Store<any>, private wordService: WordService) {}
+    constructor(private wordService: WordService) {}
 
     remove() {
         this.wordService.removeWord(this.wordInfo._id);

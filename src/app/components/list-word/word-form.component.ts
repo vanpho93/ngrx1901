@@ -23,8 +23,7 @@ import { WordService } from './word.service';
                 Cancel
             </button>
         </div>
-    `,
-    providers: [WordService]
+    `
 })
 
 export class WordFormComponent {

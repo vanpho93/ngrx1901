@@ -15,8 +15,7 @@ import { WordService } from './word.service';
         </app-word-item>
     </div>
   </div>
-  `,
-  providers: [WordService]
+  `
 })
 
 export class ListWordComponent {
